@@ -24,17 +24,32 @@ export default function ContactPage() {
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [submitError, setSubmitError] = useState("");
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!formData.name || !formData.email || !formData.message) return;
 
+    setSubmitError("");
     setIsSubmitting(true);
-    // Simulate API Submission
-    setTimeout(() => {
-      setIsSubmitting(false);
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      });
+
+      if (!res.ok) {
+        const result = (await res.json().catch(() => null)) as { error?: string } | null;
+        throw new Error(result?.error || "Unable to submit form right now.");
+      }
+
       setIsSubmitted(true);
-    }, 1500);
+    } catch (error) {
+      setSubmitError(error instanceof Error ? error.message : "Unable to submit form right now.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -59,7 +74,7 @@ export default function ContactPage() {
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
             className="text-4xl sm:text-6xl font-extrabold tracking-tight text-white leading-tight"
           >
-            Let's Engineer Your <br />
+            Let&apos;s Engineer Your <br />
             <span className="gradient-text">Next Breakthrough</span>
           </motion.h1>
 
@@ -98,10 +113,10 @@ export default function ContactPage() {
                         Secure Email
                       </p>
                       <a
-                        href="mailto:contact@quantixnode.com"
+                        href="mailto:hello@quantixnode.com"
                         className="text-sm font-bold text-white hover:text-accent transition-colors"
                       >
-                        contact@quantixnode.com
+                        hello@quantixnode.com
                       </a>
                     </div>
                   </div>
@@ -114,7 +129,7 @@ export default function ContactPage() {
                       <p className="text-xs font-semibold text-text-muted uppercase tracking-wider">
                         Headquarters
                       </p>
-                      <p className="text-sm font-bold text-white">San Francisco, California</p>
+                      <p className="text-sm font-bold text-white">Ahmedabad, India</p>
                     </div>
                   </div>
                 </div>
@@ -259,6 +274,9 @@ export default function ContactPage() {
                         </>
                       )}
                     </button>
+                    {submitError ? (
+                      <p className="text-sm text-red-300 -mt-2">{submitError}</p>
+                    ) : null}
                   </motion.form>
                 ) : (
                   <motion.div

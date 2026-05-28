@@ -21,6 +21,8 @@ import {
   ExternalLink,
   ChevronRight,
   BarChart,
+  Smartphone,
+  Bot,
 } from "lucide-react";
 
 // Fade-in animation variants for scroll-reveal
@@ -47,16 +49,55 @@ const staggerContainer = {
   },
 };
 
-// Tech Stack Data
-const techStack = [
-  { name: "Next.js", icon: Cpu, color: "from-white to-gray-400" },
-  { name: "React", icon: Globe, color: "from-cyan-400 to-blue-500" },
-  { name: "TypeScript", icon: Terminal, color: "from-blue-500 to-indigo-600" },
-  { name: "Node.js", icon: Database, color: "from-green-400 to-emerald-600" },
-  { name: "MongoDB", icon: Layers, color: "from-emerald-500 to-green-600" },
-  { name: "Firebase", icon: Flame, color: "from-amber-400 to-orange-500" },
-  { name: "Docker", icon: Cloud, color: "from-cyan-500 to-blue-600" },
-  { name: "AWS", icon: Database, color: "from-orange-400 to-yellow-600" },
+const featuredTech = [
+  {
+    name: "Scalable Web Architecture",
+    icon: Cpu,
+    description: "Modern frontend and backend systems optimized for performance, SEO, scalability, and cloud deployment.",
+    inlineTech: "Next.js • React • Node.js • TypeScript",
+    miniLabels: ["SSR", "SEO", "Edge Runtime", "JAMstack"],
+    colSpan: "md:col-span-6 lg:col-span-5",
+    glow: "from-cyan-500/30 via-indigo-500/20 to-transparent",
+  },
+  {
+    name: "Mobile Product Engineering",
+    icon: Smartphone,
+    description: "Cross-platform mobile experiences with real-time sync, offline-first systems, and scalable app infrastructure.",
+    inlineTech: "Flutter • React Native • Firebase • Supabase",
+    miniLabels: ["Realtime", "Offline-first", "Push", "Cross-platform"],
+    colSpan: "md:col-span-6 lg:col-span-3",
+    glow: "from-blue-500/30 via-cyan-500/20 to-transparent",
+  },
+  {
+    name: "AI Automation Ecosystem",
+    icon: Bot,
+    description: "AI-native infrastructure powered by intelligent workflows, retrieval systems, automation layers, and scalable inference.",
+    inlineTech: "OpenAI • LangChain • Vector DB • RAG",
+    miniLabels: ["Agents", "Automation", "Embeddings", "Vector Search"],
+    colSpan: "md:col-span-12 lg:col-span-4",
+    glow: "from-indigo-500/30 via-violet-500/20 to-transparent",
+  },
+];
+
+const floatingTech = [
+  { name: "React", icon: Globe },
+  { name: "Next.js", icon: Cpu },
+  { name: "Node.js", icon: Database },
+  { name: "TypeScript", icon: Terminal },
+  { name: "MongoDB", icon: Layers },
+  { name: "PostgreSQL", icon: Database },
+  { name: "Redis", icon: Zap },
+  { name: "Docker", icon: Cloud },
+  { name: "Kubernetes", icon: Shield },
+  { name: "Firebase", icon: Flame },
+  { name: "AWS", icon: Cloud },
+  { name: "GraphQL", icon: ChevronRight },
+  { name: "OpenAI", icon: Sparkles },
+  { name: "LangChain", icon: Brain },
+  { name: "Flutter", icon: Smartphone },
+  { name: "React Native", icon: Smartphone },
+  { name: "Supabase", icon: Database },
+  { name: "Vercel", icon: Monitor },
 ];
 
 // Services Data
@@ -195,19 +236,63 @@ const bentoFeatures = [
   },
   {
     title: "Modern Tech Stack",
-    desc: "Harnessing the bleeding edge of software engineering to ensure infinite vertical scaling and simple updates.",
+    desc: "AI-first, cloud-native, and full-stack technologies crafted for scalable modern platforms.",
     size: "md:col-span-2",
     accent: "text-indigo-400",
     visual: (
-      <div className="grid grid-cols-4 gap-2 mt-4 w-full">
-        {["Next.js", "React", "TS", "AWS"].map((t, idx) => (
-          <div
-            key={t}
-            className="bg-white/5 border border-white/10 rounded-lg p-2 text-center text-xs font-mono text-text-muted hover:border-indigo-500/40 hover:text-white transition-all"
-          >
-            {t}
-          </div>
-        ))}
+      <div className="mt-4 w-full space-y-3">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+          {[
+            { label: "MERN Stack", stack: "MongoDB • Express • React • Node.js" },
+            { label: "MEAN Stack", stack: "MongoDB • Express • Angular • Node.js" },
+            { label: "JAMstack", stack: "Next.js • Nuxt • Astro • Headless CMS" },
+            { label: "AI Native", stack: "OpenAI • LangChain • Vector DB • RAG" },
+          ].map((group) => (
+            <div
+              key={group.label}
+              className="rounded-xl border border-white/10 bg-white/[0.04] px-3 py-2 hover:border-cyan-400/40 hover:bg-cyan-400/[0.06] transition-all"
+            >
+              <p className="text-[10px] font-semibold tracking-[0.08em] uppercase text-cyan-300">
+                {group.label}
+              </p>
+              <p className="text-[11px] text-slate-300 mt-1 leading-relaxed">
+                {group.stack}
+              </p>
+            </div>
+          ))}
+        </div>
+        <div className="flex flex-wrap gap-2">
+          {[
+            "TypeScript",
+            "Python",
+            "Go",
+            "NestJS",
+            "PostgreSQL",
+            "MongoDB",
+            "Redis",
+            "GraphQL",
+            "Docker",
+            "Kubernetes",
+            "AWS",
+            "GCP",
+            "Azure",
+            "Terraform",
+            "Vercel",
+            "Supabase",
+          ].map((tech) => (
+            <span
+              key={tech}
+              className="rounded-full border border-white/10 bg-white/[0.03] px-2.5 py-1 text-[10px] font-medium text-slate-300 hover:text-white hover:border-indigo-400/50 hover:bg-indigo-500/10 transition-all"
+            >
+              {tech}
+            </span>
+          ))}
+        </div>
+        <div className="rounded-lg border border-emerald-400/20 bg-emerald-500/10 px-3 py-2">
+          <p className="text-[10px] sm:text-xs font-mono text-emerald-300">
+            Startup-ready delivery: MVP to scale with product, growth, and AI ops.
+          </p>
+        </div>
       </div>
     ),
   },
@@ -249,6 +334,19 @@ const stats = [
 ];
 
 export default function Home() {
+  const handleSpotlightMove = (event: React.MouseEvent<HTMLDivElement>) => {
+    const element = event.currentTarget;
+    const rect = element.getBoundingClientRect();
+    const x = event.clientX - rect.left;
+    const y = event.clientY - rect.top;
+    const rx = ((y / rect.height) - 0.5) * -5;
+    const ry = ((x / rect.width) - 0.5) * 5;
+    element.style.setProperty("--mx", `${x}px`);
+    element.style.setProperty("--my", `${y}px`);
+    element.style.setProperty("--rx", `${rx}deg`);
+    element.style.setProperty("--ry", `${ry}deg`);
+  };
+
   return (
     <div className="flex flex-col gap-28 pb-20">
       {/* ================= HERO SECTION ================= */}
@@ -457,29 +555,115 @@ export default function Home() {
       </section>
 
       {/* ================= TECHNOLOGY STACK SECTION ================= */}
-      <section className="relative border-y border-border-glass py-16 bg-bg-darker/60 backdrop-blur-sm overflow-hidden">
-        {/* Subtle grid elements background */}
+      <section className="relative border-y border-border-glass py-16 bg-bg-darker/75 backdrop-blur-sm overflow-hidden">
+        <motion.div
+          className="absolute inset-0 z-0 pointer-events-none opacity-35"
+          animate={{ backgroundPosition: ["0px 0px", "40px 40px"] }}
+          transition={{ duration: 18, repeat: Infinity, ease: "linear" }}
+          style={{
+            backgroundImage:
+              "linear-gradient(to right, rgba(255,255,255,0.03) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,0.03) 1px, transparent 1px)",
+            backgroundSize: "40px 40px",
+          }}
+        />
         <div className="absolute inset-0 grid-overlay opacity-30 z-0 pointer-events-none" />
+        <div className="absolute top-0 left-1/4 w-72 h-72 bg-cyan-500/10 blur-[110px] rounded-full pointer-events-none" />
+        <div className="absolute bottom-0 right-1/4 w-80 h-80 bg-indigo-500/10 blur-[120px] rounded-full pointer-events-none" />
+        <div className="absolute top-14 left-10 w-1.5 h-1.5 rounded-full bg-cyan-300/60 animate-pulse pointer-events-none" />
+        <div className="absolute top-24 right-16 w-1 h-1 rounded-full bg-indigo-300/60 animate-pulse pointer-events-none" />
+        <div className="absolute bottom-14 left-1/3 h-px w-44 bg-gradient-to-r from-transparent via-cyan-400/50 to-transparent pointer-events-none" />
 
         <div className="max-w-7xl mx-auto px-6 md:px-8 relative z-10">
-          <h3 className="text-center text-xs font-bold tracking-widest text-text-muted uppercase mb-10">
-            OUR PREFERRED HIGH-PERFORMANCE TECH STACK
-          </h3>
+          <div className="text-center mb-10">
+            <p className="text-[11px] font-bold tracking-[0.2em] text-text-muted uppercase">
+              HIGH-PERFORMANCE TECHNOLOGY ECOSYSTEM
+            </p>
+            <h3 className="text-2xl sm:text-4xl font-bold text-white tracking-tight mt-3">
+              Built With Modern Scalable Technologies
+            </h3>
+            <p className="text-sm sm:text-base text-slate-300/90 max-w-3xl mx-auto mt-3">
+              AI-first, cloud-native, and full-stack technologies powering secure and scalable digital platforms.
+            </p>
+            <div className="h-px w-40 mx-auto mt-5 bg-gradient-to-r from-transparent via-cyan-400 to-indigo-500 animate-pulse" />
+          </div>
 
-          <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-4">
-            {techStack.map((tech) => (
-              <div
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-4">
+            {featuredTech.map((tech, i) => (
+              <motion.div
                 key={tech.name}
-                className="glass-panel rounded-2xl p-4 flex flex-col items-center justify-center gap-3 group hover:border-accent/40 transition-all duration-300"
+                initial={{ opacity: 0, y: 18 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: i * 0.08 }}
+                viewport={{ once: true, margin: "-80px" }}
+                onMouseMove={handleSpotlightMove}
+                className={`group relative ${tech.colSpan} rounded-2xl border border-white/10 bg-white/[0.03] backdrop-blur-xl p-5 overflow-hidden hover:border-cyan-400/50 transition-all duration-300`}
+                style={{
+                  boxShadow: "0 10px 30px rgba(10, 20, 60, 0.35)",
+                  transform: "perspective(1200px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg))",
+                }}
               >
-                <div className="w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center group-hover:scale-110 group-hover:border-accent/30 transition-transform duration-300">
-                  <tech.icon className="w-5 h-5 text-text-muted group-hover:text-accent transition-colors" />
+                <div className={`absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-gradient-to-br ${tech.glow}`} />
+                <div
+                  className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                  style={{
+                    background:
+                      "radial-gradient(220px circle at var(--mx) var(--my), rgba(34,211,238,0.15), rgba(99,102,241,0.08) 40%, transparent 70%)",
+                  }}
+                />
+                <motion.div
+                  className="absolute -inset-y-10 -left-16 w-24 rotate-12 bg-gradient-to-r from-transparent via-white/15 to-transparent opacity-0 group-hover:opacity-100"
+                  animate={{ x: [-120, 420] }}
+                  transition={{ duration: 2.4, repeat: Infinity, ease: "easeInOut" }}
+                />
+                <div className="relative z-10 flex items-start justify-between">
+                  <div className="w-12 h-12 rounded-xl border border-white/10 bg-bg-dark/80 flex items-center justify-center shadow-lg shadow-black/40 group-hover:scale-105 transition-transform">
+                    <tech.icon className="w-6 h-6 text-cyan-300" />
+                  </div>
+                  <span className="text-[10px] font-mono uppercase tracking-wider text-cyan-300/80 border border-cyan-400/30 px-2 py-1 rounded-full">
+                    Featured
+                  </span>
                 </div>
-                <span className="text-xs font-semibold text-text-muted group-hover:text-white transition-colors">
-                  {tech.name}
-                </span>
-              </div>
+                <h4 className="relative z-10 mt-4 text-lg font-semibold text-white">{tech.name}</h4>
+                <p className="relative z-10 mt-2 text-sm text-slate-300 leading-relaxed">{tech.description}</p>
+                <p className="relative z-10 mt-3 text-xs text-cyan-200/90 font-medium">{tech.inlineTech}</p>
+                <div className="relative z-10 mt-3 flex flex-wrap gap-1.5">
+                  {tech.miniLabels.map((mini) => (
+                    <span
+                      key={mini}
+                      className="text-[10px] px-2 py-1 rounded-md border border-white/10 bg-bg-dark/60 text-slate-300"
+                    >
+                      {mini}
+                    </span>
+                  ))}
+                </div>
+              </motion.div>
             ))}
+          </div>
+
+          <div className="mt-4 glass-panel rounded-2xl p-4 sm:p-5 border border-white/10 relative overflow-hidden">
+            <div className="absolute -top-8 right-10 w-32 h-32 rounded-full bg-indigo-500/10 blur-3xl pointer-events-none" />
+            <div className="flex items-center gap-2 mb-3 text-[10px] font-mono uppercase tracking-widest text-slate-400">
+              <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+              Runtime / Infra / AI Modules
+            </div>
+            <div className="flex flex-wrap gap-2.5 items-start">
+              {floatingTech.map((tech, i) => (
+                <motion.div
+                  key={tech.name}
+                  initial={{ opacity: 0, y: 10 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.35, delay: 0.18 + i * 0.04 }}
+                  viewport={{ once: true }}
+                  whileHover={{ scale: 1.05, y: -2 }}
+                  className={`group relative inline-flex items-center gap-1.5 rounded-xl border border-white/10 bg-white/[0.03] ${i % 5 === 0 ? "px-4 py-2.5 text-sm" : i % 3 === 0 ? "px-3.5 py-2 text-xs" : "px-3 py-1.5 text-xs"} text-slate-300 hover:text-white hover:border-indigo-400/50 transition-all duration-300 ${i % 2 === 0 ? "animate-float" : "animate-float-delayed"}`}
+                  style={{ marginTop: `${(i % 4) * 4}px` }}
+                >
+                  <div className="absolute inset-0 rounded-xl opacity-0 group-hover:opacity-100 bg-gradient-to-r from-cyan-500/10 via-indigo-500/10 to-transparent transition-opacity" />
+                  <tech.icon className="w-3.5 h-3.5 text-cyan-300 group-hover:text-cyan-200 transition-colors" />
+                  <span className="relative z-10">{tech.name}</span>
+                </motion.div>
+              ))}
+            </div>
           </div>
         </div>
       </section>
@@ -598,7 +782,7 @@ export default function Home() {
               <span className="gradient-text">Extraordinary.</span>
             </h2>
             <p className="text-text-muted text-base sm:text-lg leading-relaxed max-w-xl mx-auto">
-              Partner with QuantixNode to construct secure, lightning-fast digital assets integrated with custom AI tools. Let's schedule your architecture briefing.
+              Partner with QuantixNode to construct secure, lightning-fast digital assets integrated with custom AI tools. Let&apos;s schedule your architecture briefing.
             </p>
           </div>
 
