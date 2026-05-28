@@ -13,6 +13,9 @@ const navItems = [
   { name: "Contact", href: "/contact" },
 ];
 
+const normalizePath = (value: string) =>
+  value !== "/" && value.endsWith("/") ? value.slice(0, -1) : value;
+
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
@@ -54,7 +57,7 @@ export default function Navbar() {
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center gap-1 bg-white/5 border border-white/10 rounded-full px-2 py-1.5 backdrop-blur-md">
             {navItems.map((item) => {
-              const isActive = pathname === item.href;
+              const isActive = normalizePath(pathname) === item.href;
               return (
                 <Link
                   key={item.href}
@@ -139,7 +142,7 @@ export default function Navbar() {
 
                 <nav className="flex flex-col gap-4">
                   {navItems.map((item, idx) => {
-                    const isActive = pathname === item.href;
+                    const isActive = normalizePath(pathname) === item.href;
                     return (
                       <motion.div
                         key={item.href}
