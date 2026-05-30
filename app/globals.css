@@ -67,6 +67,13 @@
   --foreground: #f8fafc;
 }
 
+html,
+body {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: clip;
+}
+
 body {
   background-color: var(--background);
   color: var(--foreground);
